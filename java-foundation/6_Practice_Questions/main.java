@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution_1 {
+class PrimeCheck {
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
 
@@ -58,7 +58,7 @@ Now if we start div from 2, then at the end of the iteration, count will remain 
 In addition to this improved condition, we also add in a `break` statement to break out of the loop if atleast one item value of div 
 will divide the number. That would verify it to be not prime anyways. There is no need for further iterations.
 */
-class Solution_2 {
+class PrimeCheckOptimized {
      public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
 
@@ -82,5 +82,34 @@ class Solution_2 {
                 System.out.println("not prime");
         }
 
+    }
+}
+
+
+//Prime till a limit
+class PrimeTillLimit {
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+
+        int t = scn.nextInt();
+
+        int n = 2;
+        int i = 0;
+
+        while ( i < t ) {
+            int count = 0;
+            for ( int div = 2; div * div <= n; div++ ) {
+                if ( n % div == 0) {
+                    count++;
+                    break;
+                }
+            }
+
+            if ( count == 0 ) {
+                System.out.println(n);
+                i++;
+            }
+            n++;
+        }
     }
 }
