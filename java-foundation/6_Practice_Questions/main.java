@@ -45,10 +45,9 @@ Another eg : 24, it's square root is ~4.9. There aren't any unique factors > 5
 4 X 6   6 X 4
 
 For every factor p X q = n, either p or q will be less than square root of n.
-To elaborate, for 1 till n/2 , p will be less than square root of n
-From n/2 till n, q will be less than square root of n.
 
 So we can take the first condition, i.e, p < sqrt(n) => can also be written as p*p <= n
+The reason we chose p is because it comprises of the first half of factors. And q is p repeated itself again anyways.
 
 This is the condition that we use.
 
