@@ -122,17 +122,10 @@ class Fibonacci_N {
         int prev = 0;
         int next = 1;
         for ( int i = 1; i <= limit; i++ ) {
-            if (i == 1) {
-                System.out.println(0);
-            } else if ( i == 2) {
-                System.out.println(1);
-            }
-            else {
-                sum = prev + next;
-                prev = next;
-                next = sum;
-                System.out.println(next);
-            }
+            System.out.println(prev);
+            sum = prev + next;
+            prev = next;
+            next = sum;
         }
     }
 }
