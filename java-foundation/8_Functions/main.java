@@ -64,7 +64,7 @@ class FrequencyOfDigit {
 /*
 Sample input
 57
- 2
+2
  
 Sample output
 111001
@@ -286,8 +286,8 @@ class AnyBaseMultiplication {
         int pow = 1;
 
         while ( firstNumber > 0 || secondNumber > 0 || sumCarry > 0) {
-            int digit1 = secondNumber % 10;
-            int digit2 = firstNumber % 10;
+            int digit1 = firstNumber % 10;
+            int digit2 = secondNumber % 10;
 
             int sum = sumCarry + digit1 + digit2;
 
@@ -316,7 +316,7 @@ class AnyBaseMultiplication {
             //singleProduct holds the multiplication results at each iteration of n2
             int singleProduct = getProductWithASingleDigit(n1, b, d2);
 
-            int result = getSum(b, result, singleProduct * pow);
+            result = getSum(b, result, singleProduct * pow);
             
             n2 /= 10;
             pow *= 10;

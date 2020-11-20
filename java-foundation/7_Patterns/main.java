@@ -395,6 +395,16 @@ Take 6th row, n = 5,
 
 Another equation to calculate the next combination value is :
 iC(j+1) = (iCj * (i - j)) / (j + 1)
+
+The logic we use here is i -> 0 till n - 1;
+j -> 0 till i
+we take iCj
+for first iteration 0C0 = 1
+                    1C0 = 1
+                    2C0 = 1 and so on
+
+This is the reason why we are starting i from 0 itself instead of 1. 
+Also if we start i from 1, then (i - j) part of the equation will result in the wrong output.
 */
 class Pattern13 {
     public static void main(String[] args) {
@@ -721,7 +731,7 @@ class Pattern19b {
                     }
                 } else if ( i == mid ) {
                     System.out.print("*\t");
-                } else if ( i < n ) {  // similar to i > mid && i != n
+                } else if ( i < n ) {  // similar to (i > mid && i != n)
                     if ( j == mid || j == 1 ) {
                         System.out.print("*\t");
                     } else {

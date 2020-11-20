@@ -185,7 +185,19 @@ class ReverseNumber {
 
     }
 }
+/*
+Sample input :
+8 1 4 5 6 2 7 3    =>  are in positions  8 7 6 5 4 3 2 1 respectively.
 
+Now 3 is in position 1, then 1 will come in the 3rd position of the output
+
+///ly 1 is in position 7, so 7 will come in position 1
+
+7 is in position 2, so 2 will come in position 7 and so on.
+
+Sample output:
+8 2 4 5 6 1 3 7
+*/
 class InverseNumber {
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
@@ -193,14 +205,6 @@ class InverseNumber {
         int num = scn.nextInt();
         int position = 1;
         int temp = num;
-
-        int d = 0;
-        while(temp > 0) {
-            temp = temp/10;
-            d++;
-        }
-
-        temp = num;
 
         int result = 0;
         while ( temp > 0 ) {
@@ -311,12 +315,12 @@ class PrimeFactorization {
                 if ( count == 0 ) {
                     while ( n % i == 0 ) {
                         n = n/i;
-                        System.out.print(i);
-                        System.out.print(" ");
+                        System.out.print(i+"\t");
                     }
                 }
             }
         }
+        System.out.println();
     }
 }
 
