@@ -69,7 +69,7 @@ class PrimeCheckOptimized {
 
             int count = 0;
             
-            for (int div = 2; div * div <=n; div++) {
+            for (int div = 2; div * div <= n; div++) {
                 if(n % div == 0) {
                     count++;
                     break;
@@ -118,12 +118,11 @@ class Fibonacci_N {
 
         int limit = scn.nextInt();
 
-        int sum = 0;
         int prev = 0;
         int next = 1;
         for ( int i = 1; i <= limit; i++ ) {
             System.out.println(prev);
-            sum = prev + next;
+            int sum = prev + next;
             prev = next;
             next = sum;
         }
@@ -315,7 +314,7 @@ class PrimeFactorization {
                 if ( count == 0 ) {
                     while ( n % i == 0 ) {
                         n = n/i;
-                        System.out.print(i+"\t");
+                        System.out.print(i + "\t");
                     }
                 }
             }

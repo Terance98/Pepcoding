@@ -122,6 +122,7 @@ class AnyBaseToDecimal {
     }
 }
 
+//Check the solution explanation video some time
 class AnyBaseToAnyBase {
     public static int convertAnyBaseToDecimal( int n, int b ) {
         int pow = 0;
@@ -184,13 +185,13 @@ class AnyBaseAddition {
             int lastDigitOf_n1 = n1 % 10;
             int lastDigitOf_n2 = n2 % 10;
 
-            int sumOfDigits = carry + lastDigitOf_n1 + lastDigitOf_n2;
+            int sum = carry + lastDigitOf_n1 + lastDigitOf_n2;
           
-            // Here sum is sumOfDigits capped by base value, i.e, remainder after dividing it by base 
-            int sum = (sumOfDigits % b);  
+            // Here sum is capped by base value, i.e, remainder after dividing it by base 
+            carry = sum / b;
+            sum = sum % b;  
             
             result += sum * pow;
-            carry = sumOfDigits / b;
 
             n1 /= 10;
             n2 /= 10;
