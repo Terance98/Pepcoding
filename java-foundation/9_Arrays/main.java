@@ -537,3 +537,320 @@ class RotateArray_b {
     }
 }
 
+/*
+The logic is same as the inverse of a number
+
+eg : 6 1 2 5 4 3 => 6 3 2 1 4 5
+
+Here the position in determined from the index
+
+input 
+5
+
+4
+0
+2
+3
+1
+
+output
+1
+4
+2
+3
+0
+
+The difference here in this question is that the numbers range from 0 to n - 1
+*/
+class InversOfAnArray {
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+
+        int n = scn.nextInt();
+
+        int[] arr = new int[n];
+        int[] res = new int[n];
+
+        for ( int i = 0; i < arr.length; i ++ ) {
+            arr[i] = scn.nextInt();
+        }
+
+        //Can also be done with a for loop. Using while for readability's sake.
+        int startIndex = arr.length - 1;
+        while(startIndex >= 0) {
+            //Since the numbers range from 0 to n-1, we don't need to subract 1.
+            int num = arr[startIndex];  
+
+            res[num] = startIndex;
+
+            startIndex --;
+        }
+
+        for ( int i = 0; i < res.length; i ++ ) {
+            System.out.println(res[i]);
+        }
+
+    }
+}
+/*
+input
+3
+10
+20
+30
+
+output
+10	
+10	20	
+10	20	30	
+20	
+20	30	
+30	
+*/
+class PrintAllSubArrays {
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+
+        int n = scn.nextInt();
+
+        int[] arr = new int[n];
+
+        for ( int i = 0; i < n; i ++ ) {
+            arr[i] = scn.nextInt();
+        }
+
+        int startIndex = 0;
+        while ( startIndex < arr.length ) {
+            for ( int i = startIndex; i < n; i ++ ) {
+                for ( int j = startIndex; j <= i; j ++ ) {
+                    System.out.print(arr[j] + "\t");
+                }
+                System.out.println();
+            }
+            startIndex ++;
+        }
+    }
+}
+
+/*
+For n elements, there will be 2^n subsets
+
+input 
+3
+10
+20
+30
+
+output
+-	-	-	
+-	-	30	
+-	20	-	
+-	20	30	
+10	-	-	
+10	-	30	
+10	20	-	
+10	20	30	
+
+The the output follows the pattern of binary from 0 to 2^n
+So we iterate i from 0 -> 2^n. Compute the binary of i at each stage and use 1s and 0s to determine whether to print the num or not.
+
+Here the binaries are considered as 000, 001, 010 ... etc when n = 3
+Hence we can store i to a variable temp. Iterate over the array from n - 1 -> 0
+We are iterating in reverse order because, each time we compute a binary bit, it will be in the reverse order.
+i.e, the first bit computed will be in the last position and the next will be pre-last and so on. 
+
+Then at each iteration over the array, we check if the bit computed over i is 0 or 1. If 0, we append "-" to the string output. 
+Else we append arr[j] to the string output.
+
+Then we print the string value for each iteraiton of i.
+*/
+class SubsetsOfAnArray {
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+
+        int n = scn.nextInt();
+
+        int[] arr = new int[n];
+
+        for ( int i = 0; i < arr.length; i ++ ) {
+            arr[i] = scn.nextInt();
+        }
+
+        int index = 0;
+        int limit = (int) Math.pow(2, arr.length);
+
+        for ( int i = 0; i < limit; i ++ ) {
+            // Convert i to its equilvalent binary and use 1s and 0s to determine whether to print the number or not 
+            int temp = i;
+            String set = "";
+            for ( int j = arr.length - 1; j >= 0; j -- ) {
+                // a[j] will hold the value and the loop is iterated in reverse order such that we get the last element of arr first 
+                int d = temp % 2;
+                temp /= 2;
+
+                if ( d == 0 ) {
+                    set = "-\t" + set;
+                } else {
+                    set = arr[j] + "\t" + set;
+                }
+            }
+            System.out.println(set);
+        }
+    }
+}
+
+class BinarySearch {
+    public static void main(String[] args) {
+
+        int[] arr = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+        int data = 20;
+
+        int low = 0;
+        int high = arr.length - 1;
+
+        while ( low <= high ) {
+            int mid = ( low + high ) / 2;
+
+            if (data > arr[mid]) {
+                low = mid + 1;
+            } else if ( data < arr[mid]) {
+                high = mid - 1;
+            } else {
+                System.out.println(mid);
+                return;
+            }
+        }
+        System.out.println(-1);
+    }
+}
+
+/*
+input
+10
+
+1
+5
+10
+15
+22
+33
+40
+42
+55
+66
+
+34
+
+output
+40 //ceil
+33 //floor
+
+Logic :
+Whenever we move the low, set the floor as array[mid]
+Whenever we move the high, set the ceil as array[mid]
+*/
+
+class CeilAndFloorInAnArray {
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+
+        int n = scn.nextInt();
+
+        int[] arr = new int[n];
+
+        for ( int i = 0; i < arr.length; i ++ ) {
+            arr[i] = scn.nextInt();
+        }
+
+        int data = scn.nextInt();
+
+        int low = 0;
+        int high = arr.length - 1;
+
+        int floor = 0;
+        int ceil = 0;
+        
+        while ( low <= high ) {
+            int mid = ( low + high ) / 2;
+
+            if ( data > arr[mid] ) {
+                floor = arr[mid];
+                low = mid + 1;
+            } else if ( data < arr[mid] ) {
+                ceil = arr[mid];
+                high = mid - 1;
+            } else {
+                ceil = arr[mid];
+                floor = arr[mid];
+                break; 
+            }
+        }
+
+        System.out.println(ceil);
+        System.out.println(floor);
+    }
+}
+/*
+A modification of the binary serach.
+Here we use two sets of binary searches to fnd the lowest and highest indexes
+
+To find the highest index, even after finding the element, we will move the low to mid + 1 and continue to loop unitl the loop breaks
+eventually when low exceeds high
+
+Similarly to find the lowest index, after findind the first match, we will move high to mid - 1 and continue looping until the loop breaks
+
+In both these loops, each time a match happens, we will assign its corresponding index to the respective firstIndex or lastIndex variable.
+*/
+class FirstIndexAndLastIndex {
+    public static void main(String [] args) {
+        Scanner scn = new Scanner(System.in);
+
+        int n = scn.nextInt();
+
+        int[] arr = new int[n];
+
+        for ( int i = 0; i < arr.length; i ++ ) {
+            arr[i] = scn.nextInt();
+        }
+
+        int data = scn.nextInt();
+
+        int low = 0;
+        int high = arr.length - 1;
+
+        int lastIndex = -1;
+        while ( low <= high ) {
+            int mid = ( low + high ) / 2;
+
+            if ( data > arr[mid] ) {
+                low = mid + 1;
+            } else if ( data < arr[mid] ) {
+                high = mid - 1;
+            } else {
+                lastIndex = mid;
+                low = mid + 1; //looking further to the right to see if the elements still repeats or not.
+            }
+        }
+
+        int firstIndex = -1;
+        low = 0;
+        high = arr.length - 1;
+
+        while ( low <= high ) {
+            int mid = ( low + high ) / 2;
+
+            if ( data > arr[mid] ) {
+                low = mid + 1;
+            } else if ( data < arr[mid] ) {
+                high = mid - 1;
+            } else {
+                firstIndex = mid;
+                high = mid - 1; //looking further to the left to see if the elements still repeats or not.
+            }
+        }
+
+        System.out.println(lastIndex);
+        System.out.println(firstIndex);
+        
+    }
+}
