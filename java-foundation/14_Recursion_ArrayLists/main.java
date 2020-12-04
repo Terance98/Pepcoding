@@ -267,30 +267,27 @@ class JumpMazePath {
         //each iteration, do horizontal jump, vertical jump and diagonal jump
         ArrayList<String> paths = new ArrayList<>();
 
-        if ( sc < dc ) {
-            for ( int i = 1; i <= dc - sc; i ++ ) {
-                ArrayList<String> horizontalPaths = getMazePaths(sr, sc + i, dr, dc);
-                for ( String path: horizontalPaths ) {
-                    paths.add("h" + i + path);
-                }
+        //horizontal
+        for ( int i = 1; i <= dc - sc; i ++ ) {
+            ArrayList<String> horizontalPaths = getMazePaths(sr, sc + i, dr, dc);
+            for ( String path: horizontalPaths ) {
+                paths.add("h" + i + path);
             }
         }
 
-        if ( sr < dr ) {
-            for ( int i = 1; i <= dr - sr; i ++ ) {
-                ArrayList<String> verticalPaths = getMazePaths(sr + i, sc, dr, dc);
-                for ( String path: verticalPaths ) {
-                    paths.add("v" + i + path);
-                }
+        //vertical
+        for ( int i = 1; i <= dr - sr; i ++ ) {
+            ArrayList<String> verticalPaths = getMazePaths(sr + i, sc, dr, dc);
+            for ( String path: verticalPaths ) {
+                paths.add("v" + i + path);
             }
         }
 
-        if ( sr < dr && sc < dc ) {
-            for ( int i = 1; i <= dc - sc  && i <= dr - sr; i ++ ) {
-                ArrayList<String> diagonalPaths = getMazePaths(sr + i, sc + i, dr, dc);
-                for ( String path: diagonalPaths ) {
-                    paths.add("d" + i +  path);
-                }
+        //diagonal
+        for ( int i = 1; i <= dc - sc  && i <= dr - sr; i ++ ) {
+            ArrayList<String> diagonalPaths = getMazePaths(sr + i, sc + i, dr, dc);
+            for ( String path: diagonalPaths ) {
+                paths.add("d" + i +  path);
             }
         }
 
