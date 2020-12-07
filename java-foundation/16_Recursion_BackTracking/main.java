@@ -550,7 +550,7 @@ class KnightsTour {
             return;
         }
 
-        if ( move == chess.length * chess.length ) {
+        if ( move == chess.length * chess.length ) { //the last move
             chess[row][col] = move;
             displayBoard(chess);
             chess[row][col] = 0;
