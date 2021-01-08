@@ -326,6 +326,20 @@ class GoldMine {
     } 
 }
 
+/*
+input
+5
+4
+2
+7
+1
+3
+10
+
+output
+true
+*/
+
 class TargetSumSubsets {
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
