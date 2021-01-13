@@ -380,3 +380,131 @@ class TargetSumSubsets {
         System.out.println(dp[arr.length][tar]);
     }
 }
+
+/*
+input
+4   //n 
+
+2
+3
+5
+6
+
+7 //amt
+
+output
+2
+*/
+class CoinChangeCombination {
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+
+        int n = scn.nextInt();
+        int[] arr = new int[n];
+
+        for ( int i = 0; i < arr.length; i ++ ) {
+            arr[i] = scn.nextInt();
+        }
+
+        int amt = scn.nextInt();
+
+        int[] dp = new int[amt + 1];
+
+        for ( int i = 0; i < arr.length; i ++ ) {
+            dp[0] = 1;
+            for ( int j = arr[i]; j < dp.length; j ++ ) {
+                dp[j] += dp[j - arr[i]];
+            }
+        }
+        System.out.println(dp[amt]);
+    }
+}
+
+/*
+input
+4
+2
+3
+5
+6
+7
+
+output
+5
+*/
+class CoinChangePermutation {
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+
+        int n = scn.nextInt();
+        int[] arr = new int[n];
+
+        for ( int i = 0; i < arr.length; i ++ ) {
+            arr[i] = scn.nextInt();
+        }
+
+        int amt = scn.nextInt();
+
+        int[] dp = new int[amt + 1];
+
+        dp[0] = 1;
+        for ( int i = 1; i < dp.length; i ++ ) {
+            for ( int j = 0; j < arr.length; j ++ ) {
+                if ( arr[j] <= i ) {
+                    dp[i] += dp[i - arr[j]];
+                }
+            }
+        }
+        System.out.println(dp[amt]);
+    }
+}
+
+/*
+input
+5
+15 14 10 45 30
+2 5 1 3 4
+7
+
+output
+75
+*/
+
+class ZeroOneKnapsack {
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+
+        int n = scn.nextInt();
+
+        int[] values = new int[n];
+        int[] weights = new int[n];
+
+        for ( int i = 0; i < values.length; i ++ ) {
+            values[i] = scn.nextInt();
+        }
+
+        for ( int i = 0; i < weights.length; i++ ) {
+            weights[i] = scn.nextInt();
+        }
+
+        int cap = scn.nextInt();
+
+        int[][] dp = new int[n + 1][cap + 1];
+
+        for ( int i = 1; i < dp.length; i ++ ) {
+            for ( int j = 1; j < dp[0].length; j ++ ) {
+                if(j >= weights[i - 1]) {
+                    int rcap = j - weights[i - 1];
+                    if (dp[i - 1][rcap] + values[i - 1] > dp[i - 1][j]) {
+                        dp[i][j] = values[i - 1] + dp[i - 1][rcap];
+                    }else {
+                        dp[i][j] = dp[i - 1][j];
+                    }
+                } else {
+                    dp[i][j] = dp[i - 1][j];
+                }
+            }
+        }
+        System.out.println(dp[n][cap]);
+    }
+}
